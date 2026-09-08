@@ -18,7 +18,6 @@ const jalaliParts = (date = new Date()) => {
 
 const canonicalChickenUrls = () => {
   const urls = [];
-  // Keep a full month of daily pages so a temporary source gap cannot hide a valid canonical page.
   for (let i = 0; i < 31; i += 1) {
     const { year, month, day } = jalaliParts(new Date(Date.now() - i * 86400000));
     urls.push(`https://nabzgheymat.ir/قیمت-گوشت-مرغ-${day}-${month}-${year}/`);
@@ -63,6 +62,7 @@ function makeCanonicalChicken(price, response) {
     normalizedUnit: 'تومان / کیلوگرم',
     sourceId: 'nabzgheymat-chicken-canonical',
     sourceUrl: response?.url || 'https://nabzgheymat.ir/',
+    address: 'قیمت مرجع بازار — منبع آنلاین سراسری',
     availability: 'in_stock',
     confidence: 'source-verified',
     observedAt: new Date().toISOString(),
@@ -72,8 +72,6 @@ function makeCanonicalChicken(price, response) {
 function parseCanonicalChicken(raw, response) {
   const html = String(raw ?? '');
   const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز(?:\s*(?:کیلویی|کیلوگرم|کیلو))?/i;
-
-  // Primary: real HTML table rows, where the product and its price belong to the same row.
   const rows = [...html.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)];
   for (const row of rows) {
     const rowText = normalizeSourceText(row[0]);
@@ -82,13 +80,9 @@ function parseCanonicalChicken(raw, response) {
     if (price !== null) return [makeCanonicalChicken(price, response)];
   }
 
-  // Fallback: some Nabz Gheimat pages expose the table as heading/text blocks instead of <tr>.
   const text = normalizeSourceText(html);
   const index = text.search(target);
   if (index < 0) return [];
-
-  // Only inspect text after the exact product label. This prevents an earlier product's price
-  // from being accidentally attached to the chicken row.
   const afterTarget = text.slice(index + text.slice(index).match(target)[0].length, index + 900);
   const price = extractChickenPrice(afterTarget);
   return price === null ? [] : [makeCanonicalChicken(price, response)];
