@@ -1,6 +1,6 @@
 let allItems=[];let allStores=[];let selectedCity='all';let selectedProduct='';
 const cityMap={tehran:'تهران',mashhad:'مشهد',isfahan:'اصفهان',shiraz:'شیراز',tabriz:'تبریز'};
-const sourceMap={parhana:'فروشگاه‌های پرحنایی','parhana-chicken':'مرغ پرحنایی — مرغ','caspian-rice':'فروشگاه برنج کاسپین','samaneh-124':'سامانه ۱۲۴',digikala:'دیجی‌کالا',snappmarket:'اسنپ‌مارکت',okala:'اُکالا',emalls:'ایمالز'};
+const sourceMap={parhana:'فروشگاه‌های پرحنایی','parhana-chicken':'مرغ پرحنایی — مرغ','parhana-red-meat':'فروشگاه پرحنایی — گوشت قرمز','caspian-rice':'فروشگاه برنج کاسپین','samaneh-124':'سامانه ۱۲۴',digikala:'دیجی‌کالا',snappmarket:'اسنپ‌مارکت',okala:'اُکالا',emalls:'ایمالز'};
 function applyUrlState(){const p=new URLSearchParams(location.search);if(cityMap[p.get('city')]){selectedCity=p.get('city');document.getElementById('city').value=selectedCity;}if(p.get('product')){selectedProduct=p.get('product');document.getElementById('product').value=selectedProduct;}}
 function syncUrl(){const p=new URLSearchParams();if(selectedCity!=='all')p.set('city',selectedCity);if(selectedProduct)p.set('product',selectedProduct);const url=p.toString()?`${location.pathname}?${p.toString()}`:location.pathname;history.replaceState(null,'',url);}
 function matchesProduct(title){const name=String(title||'');if(!selectedProduct)return true;if(selectedProduct==='مرغ')return /مرغ/.test(name)&&!/تخم\s*مرغ/.test(name);return name.includes(selectedProduct);}
