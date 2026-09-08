@@ -1,7 +1,56 @@
 {
-  "updatedAt": null,
-  "status": "not-configured",
-  "items": [],
+  "items": [
+    {
+      "id": "parhana-egg-30",
+      "title": "تخم مرغ پرحنایی 30 عددی - مشهد",
+      "price": 580000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    },
+    {
+      "id": "parhana-egg-20",
+      "title": "تخم مرغ پرحنایی 20 عددی - مشهد",
+      "price": 440000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    },
+    {
+      "id": "parhana-egg-15",
+      "title": "تخم مرغ پرحنایی 15 عددی - مشهد",
+      "price": 315000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    },
+    {
+      "id": "parhana-egg-9",
+      "title": "تخم مرغ پرحنایی 9 عددی - مشهد",
+      "price": 195000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    },
+    {
+      "id": "parhana-egg-6",
+      "title": "تخم مرغ پرحنایی 6 عددی - مشهد",
+      "price": 165000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    },
+    {
+      "id": "parhana-egg-24",
+      "title": "تخم مرغ پرحنایی 24 عددی - مشهد",
+      "price": 475000,
+      "unit": "تومان / بسته",
+      "sourceId": "parhana",
+      "observedAt": "2026-09-08T09:59:31.522Z"
+    }
+  ],
   "stores": [],
-  "note": "No verified live source is active yet."
+  "updatedAt": "2026-09-08T09:59:31.523Z",
+  "status": "ok",
+  "note": null
 }
