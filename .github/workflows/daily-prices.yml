@@ -2,6 +2,7 @@ name: Daily price update
 
 on:
   push:
+    branches: [main]
     paths:
       - 'src/**'
       - 'scripts/**'
