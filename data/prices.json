@@ -12,7 +12,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     },
     {
       "id": "parhana-egg-20",
@@ -26,7 +26,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     },
     {
       "id": "parhana-egg-15",
@@ -40,7 +40,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     },
     {
       "id": "parhana-egg-9",
@@ -54,7 +54,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     },
     {
       "id": "parhana-egg-6",
@@ -68,7 +68,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     },
     {
       "id": "parhana-egg-24",
@@ -82,11 +82,11 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:43:52.494Z"
+      "observedAt": "2026-09-08T11:58:57.522Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-08T11:43:55.558Z",
+  "updatedAt": "2026-09-08T11:59:00.658Z",
   "status": "ok",
   "note": null
 }
