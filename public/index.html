@@ -3,20 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="قیمت روز کالاها از منابع معتبر">
-  <title>قیمت روز</title>
+  <meta name="description" content="قیمت روز کالاها، قیمت فروشگاه‌ها و مقایسه قیمت در شهر شما">
+  <title>قیمت روز | قیمت واقعی بازار</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <main class="container">
     <header class="hero">
-      <h1>قیمت روز 🇮🇷</h1>
-      <p>قیمت‌های روزانه از منابع معتبر</p>
-      <div id="updated">در حال دریافت آخرین بروزرسانی...</div>
+      <div>
+        <span class="eyebrow">قیمت روز</span>
+        <h1>قیمت واقعی بازار، نزدیک شما</h1>
+        <p>قیمت مرجع، فروشگاه‌های معتبر و ارزان‌ترین گزینه را یکجا ببین.</p>
+      </div>
+      <div class="city-box">
+        <label for="city">شهر شما</label>
+        <select id="city">
+          <option value="all">همه شهرها</option>
+          <option value="tehran">تهران</option>
+          <option value="mashhad">مشهد</option>
+          <option value="isfahan">اصفهان</option>
+          <option value="shiraz">شیراز</option>
+          <option value="tabriz">تبریز</option>
+        </select>
+      </div>
     </header>
+
+    <section class="search-wrap">
+      <input id="search" type="search" placeholder="مثلاً تخم‌مرغ، برنج، روغن..." autocomplete="off">
+    </section>
+
+    <section class="stats">
+      <div><strong id="itemCount">—</strong><span>کالا</span></div>
+      <div><strong id="storeCount">—</strong><span>فروشگاه</span></div>
+      <div><strong id="updated">—</strong><span>آخرین بروزرسانی</span></div>
+    </section>
+
+    <section class="section-head">
+      <div><h2>قیمت‌های امروز</h2><p>منبع و زمان دریافت هر قیمت مشخص است.</p></div>
+    </section>
     <section id="prices" class="grid" aria-live="polite">
       <div class="loading">در حال بارگذاری...</div>
     </section>
+
+    <section class="section-head stores-head">
+      <div><h2>فروشگاه‌های این شهر</h2><p>قیمت‌های آنلاین قابل بررسی را با هم مقایسه کن.</p></div>
+    </section>
+    <section id="stores" class="stores" aria-live="polite">
+      <div class="loading">هنوز فروشگاه تأییدشده‌ای ثبت نشده است.</div>
+    </section>
+
+    <footer>قیمت روز — قیمت‌ها فقط پس از دریافت و اعتبارسنجی منبع منتشر می‌شوند.</footer>
   </main>
   <script src="/app.js"></script>
 </body>
