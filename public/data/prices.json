@@ -12,7 +12,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
     },
     {
       "id": "parhana-egg-20",
@@ -26,7 +26,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
     },
     {
       "id": "parhana-egg-15",
@@ -40,7 +40,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
     },
     {
       "id": "parhana-egg-9",
@@ -54,7 +54,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
     },
     {
       "id": "parhana-egg-6",
@@ -68,7 +68,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
     },
     {
       "id": "parhana-egg-24",
@@ -82,11 +82,109 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T11:34:24.524Z"
+      "observedAt": "2026-09-08T11:41:05.473Z"
+    },
+    {
+      "id": "protein-chicken-whole-skinless",
+      "title": "مرغ کامل خرد شده بدون پوست - کرج",
+      "price": 2,
+      "unit": "تومان / 2 کیلوگرم",
+      "normalizedPrice": 1,
+      "normalizedUnit": "تومان / کیلوگرم",
+      "sourceId": "proteinatmeat-chicken",
+      "sourceUrl": "https://proteinatmeat.com/",
+      "city": "کرج",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:08.725Z"
+    },
+    {
+      "id": "protein-chicken-thigh-back",
+      "title": "ران مرغ با کمر - کرج",
+      "price": 1,
+      "unit": "تومان / 1 کیلوگرم",
+      "normalizedPrice": 1,
+      "normalizedUnit": "تومان / کیلوگرم",
+      "sourceId": "proteinatmeat-chicken",
+      "sourceUrl": "https://proteinatmeat.com/",
+      "city": "کرج",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:08.725Z"
+    },
+    {
+      "id": "protein-chicken-thigh-boneless-back",
+      "title": "ران مرغ بدون کمر - کرج",
+      "price": 2,
+      "unit": "تومان / 2 کیلوگرم",
+      "normalizedPrice": 1,
+      "normalizedUnit": "تومان / کیلوگرم",
+      "sourceId": "proteinatmeat-chicken",
+      "sourceUrl": "https://proteinatmeat.com/",
+      "city": "کرج",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:08.725Z"
+    },
+    {
+      "id": "parhana-lamb-shoulder",
+      "title": "کتف بره - مشهد",
+      "price": 1755000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 1755000,
+      "normalizedUnit": "تومان / بسته",
+      "sourceId": "parhana-red-meat",
+      "sourceUrl": "https://www.parhana.ir/Products/",
+      "city": "مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:09.981Z"
+    },
+    {
+      "id": "parhana-lamb-forequarter",
+      "title": "سردست بره گوسفندی - مشهد",
+      "price": 1775000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 1775000,
+      "normalizedUnit": "تومان / بسته",
+      "sourceId": "parhana-red-meat",
+      "sourceUrl": "https://www.parhana.ir/Products/",
+      "city": "مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:09.981Z"
+    },
+    {
+      "id": "parhana-lamb-flank",
+      "title": "قلوه گاه گوسفندی - مشهد",
+      "price": 1130000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 1130000,
+      "normalizedUnit": "تومان / بسته",
+      "sourceId": "parhana-red-meat",
+      "sourceUrl": "https://www.parhana.ir/Products/",
+      "city": "مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:09.981Z"
+    },
+    {
+      "id": "parhana-veal",
+      "title": "گوشت گوساله - مشهد",
+      "price": 2140000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 2140000,
+      "normalizedUnit": "تومان / بسته",
+      "sourceId": "parhana-red-meat",
+      "sourceUrl": "https://www.parhana.ir/Products/",
+      "city": "مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T11:41:09.981Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-08T11:34:25.624Z",
+  "updatedAt": "2026-09-08T11:41:09.982Z",
   "status": "ok",
   "note": null
 }
