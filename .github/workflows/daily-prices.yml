@@ -1,6 +1,11 @@
 name: Daily price update
 
 on:
+  push:
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - '.github/workflows/daily-prices.yml'
   schedule:
     # Check sources every 30 minutes.
     - cron: '*/30 * * * *'
