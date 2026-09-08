@@ -16,25 +16,39 @@
         <h1>قیمت واقعی بازار، نزدیک شما</h1>
         <p>قیمت مرجع، فروشگاه‌های معتبر و ارزان‌ترین گزینه را یکجا ببین.</p>
       </div>
-      <div class="city-box">
-        <label for="city">شهر شما</label>
-        <select id="city">
-          <option value="all">همه شهرها</option>
-          <option value="tehran">تهران</option>
-          <option value="mashhad">مشهد</option>
-          <option value="isfahan">اصفهان</option>
-          <option value="shiraz">شیراز</option>
-          <option value="tabriz">تبریز</option>
-        </select>
-      </div>
     </header>
 
-    <section class="search-wrap">
-      <div class="search-row">
-        <input id="search" type="search" placeholder="مثلاً تخم‌مرغ، برنج، روغن..." autocomplete="off">
+    <section class="finder">
+      <div class="finder-title">🔎 جستجوی قیمت</div>
+      <div class="finder-grid">
+        <div class="field">
+          <label for="city">شهر شما</label>
+          <select id="city">
+            <option value="all">همه شهرها</option>
+            <option value="tehran">تهران</option>
+            <option value="mashhad">مشهد</option>
+            <option value="isfahan">اصفهان</option>
+            <option value="shiraz">شیراز</option>
+            <option value="tabriz">تبریز</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="product">کالا</label>
+          <select id="product">
+            <option value="">انتخاب کالا</option>
+            <option value="تخم مرغ">تخم مرغ 🥚</option>
+            <option value="برنج">برنج 🍚</option>
+            <option value="روغن">روغن 🫗</option>
+            <option value="شکر">شکر</option>
+            <option value="مرغ">مرغ 🍗</option>
+          </select>
+        </div>
         <button id="showPrices" type="button">نمایش قیمت 🔎</button>
       </div>
-      <div class="hint">شهر را انتخاب کن، کالا را بنویس و «نمایش قیمت» را بزن.</div>
+      <div class="hint">شهر و کالا را انتخاب کن و دکمه «نمایش قیمت» را بزن.</div>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="یا نام کالا را اینجا جستجو کن..." autocomplete="off">
+      </div>
     </section>
 
     <section class="stats">
@@ -47,7 +61,7 @@
       <div><h2>قیمت‌های امروز</h2><p>منبع و زمان دریافت هر قیمت مشخص است.</p></div>
     </section>
     <section id="prices" class="grid" aria-live="polite">
-      <div class="loading">در حال بارگذاری...</div>
+      <div class="loading">برای دیدن قیمت، شهر و کالا را انتخاب کن.</div>
     </section>
 
     <section class="section-head stores-head">
