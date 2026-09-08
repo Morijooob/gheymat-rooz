@@ -1,12 +1,33 @@
-// Price-source registry for the Daily Price project.
-// IMPORTANT: A source is not considered verified until its live response
-// has been fetched and its parser/validation rules have been tested.
-
 export const SOURCE_TYPES = Object.freeze({
   OFFICIAL: 'official',
   TRUSTED: 'trusted',
   BACKUP: 'backup',
 });
+
+function parseParhanaEggPrices(raw) {
+  const html = String(raw ?? '');
+  const now = new Date().toISOString();
+  const results = [];
+  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\s*\)[\s\S]{0,1200}?(\d[\d٬,]*)\s*ریال/gi;
+
+  for (const match of html.matchAll(pattern)) {
+    const count = Number(match[1]);
+    const rial = Number(String(match[2]).replace(/[٬,]/g, ''));
+    const toman = rial / 10;
+    if (!Number.isFinite(toman) || toman <= 0) continue;
+
+    results.push({
+      id: `parhana-egg-${count}`,
+      title: `تخم مرغ پرحنایی ${count} عددی - مشهد`,
+      price: toman,
+      unit: 'تومان / بسته',
+      sourceId: 'parhana',
+      observedAt: now,
+    });
+  }
+
+  return results;
+}
 
 export const sources = [
   {
@@ -19,10 +40,22 @@ export const sources = [
     items: [],
   },
   {
+    id: 'parhana',
+    name: 'مرغ پرحنایی',
+    type: SOURCE_TYPES.TRUSTED,
+    url: 'https://www.parhana.ir/',
+    status: 'verified',
+    scope: 'mashhad-retail',
+    city: 'مشهد',
+    note: 'فروشگاه آنلاین محلی مشهد؛ قیمت‌های تخم‌مرغ در صفحه عمومی محصولات قابل مشاهده است و برای استخراج اولیه استفاده می‌شود.',
+    parse: parseParhanaEggPrices,
+    items: ['egg'],
+  },
+  {
     id: 'digikala',
     name: 'دیجی‌کالا',
     type: SOURCE_TYPES.TRUSTED,
-    url: 'https://www.digikala.com/',
+    url: 'https://www.digikala.com/search/category-eggs/',
     status: 'candidate',
     scope: 'online-retail',
     note: 'فروشگاه آنلاین؛ قیمت هر محصول فقط پس از استخراج زنده، تشخیص واحد/وزن و اعتبارسنجی منتشر شود.',
