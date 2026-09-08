@@ -6,7 +6,12 @@ export const SOURCE_TYPES = Object.freeze({
 
 const unavailable = /(ناموجود|اتمام\s*موجودی|تمام\s*شد|در\s*انبار\s*نیست|موجود\s*نیست)/i;
 
-const PARHANA_SHOP_URL = 'https://parhana.ir/shop/';
+const PARHANA_SHOP_URL = 'https://www.parhana.ir/';
+const PARHANA_EGG_URLS = [
+  'https://www.parhana.ir/Products/',
+  'https://www.parhana.ir/',
+  'https://www.parhana.ir/shop/'
+];
 const PARHANA_ADDRESS = 'مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی';
 const PARHANA_NESHAN_SEARCH = 'https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد';
 
@@ -14,7 +19,7 @@ function parseParhanaEggPrices(raw) {
   const html = String(raw ?? '');
   const now = new Date().toISOString();
   const results = [];
-  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\)([\s\S]{0,1200}?)(\d[\d٬,]*)\s*ریال/gi;
+  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\)([\s\S]{0,700}?)(\d[\d٬,]*)\s*ریال/gi;
 
   for (const match of html.matchAll(pattern)) {
     const count = Number(match[1]);
@@ -40,7 +45,10 @@ function parseParhanaEggPrices(raw) {
       observedAt: now,
     });
   }
-  return results;
+
+  const unique = new Map();
+  for (const item of results) unique.set(item.id, item);
+  return [...unique.values()];
 }
 
 function parseParhanaChickenPrices(raw) {
@@ -117,7 +125,7 @@ function parseParhanaRedMeatPrices(raw) {
   for (const [name, id] of products) {
     const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const pattern = new RegExp(`${escaped}([\\s\\S]{0,900}?)(\\d[\\d٬,]*)\\s*ریال([\\s\\S]{0,180})`, 'i');
-    const match = html.match(pattern);
+    const match = new RegExp(pattern).exec(html);
     if (!match || unavailable.test(match[3] ?? '')) continue;
     const rial = Number(String(match[2]).replace(/[٬,]/g, ''));
     const toman = rial / 10;
@@ -129,7 +137,7 @@ function parseParhanaRedMeatPrices(raw) {
 
 export const sources = [
   { id: 'samaneh-124', name: 'سامانه ۱۲۴', type: SOURCE_TYPES.OFFICIAL, url: 'https://124.ir/', status: 'candidate', note: 'مرجع رسمی اعلام قیمت کالا و خدمات؛ اتصال خودکار فقط پس از تأیید endpoint و ساختار پاسخ انجام شود.', items: [] },
-  { id: 'parhana', name: 'مرغ پرحنایی — تخم مرغ', type: SOURCE_TYPES.TRUSTED, url: PARHANA_SHOP_URL, status: 'verified', scope: 'mashhad-retail', city: 'مشهد', address: PARHANA_ADDRESS, neshanUrl: PARHANA_NESHAN_SEARCH, note: 'فروشگاه آنلاین و شعب پرحنایی در مشهد؛ قیمت‌های تخم‌مرغ در صفحه عمومی فروشگاه قابل مشاهده است.', parse: parseParhanaEggPrices, items: ['egg'] },
+  { id: 'parhana', name: 'مرغ پرحنایی — تخم مرغ', type: SOURCE_TYPES.TRUSTED, url: PARHANA_SHOP_URL, urls: () => PARHANA_EGG_URLS, status: 'verified', scope: 'mashhad-retail', city: 'مشهد', address: PARHANA_ADDRESS, neshanUrl: PARHANA_NESHAN_SEARCH, note: 'منبع رسمی پرحنایی؛ استخراج از صفحه محصولات و دو صفحه پشتیبان رسمی انجام می‌شود تا خطای یک مسیر باعث از دست رفتن قیمت نشود.', parse: parseParhanaEggPrices, items: ['egg'] },
   { id: 'parhana-chicken', name: 'فروشگاه پرحنایی — مرغ', type: SOURCE_TYPES.TRUSTED, url: PARHANA_SHOP_URL, status: 'verified', scope: 'mashhad-retail', city: 'مشهد', address: PARHANA_ADDRESS, neshanUrl: PARHANA_NESHAN_SEARCH, note: 'صفحه رسمی فروشگاه پرحنایی؛ فقط محصولاتی که قیمت و موجودی قابل تأیید دارند منتشر می‌شوند.', parse: parseParhanaChickenPrices, items: ['chicken'] },
   { id: 'proteinatmeat-chicken', name: 'پروتئین ات میت — مرغ', type: SOURCE_TYPES.TRUSTED, url: 'https://proteinatmeat.com/', status: 'verified', scope: 'karaj-retail', city: 'کرج', address: 'کرج — فروشگاه آنلاین پروتئین ات میت', neshanUrl: 'https://nshn.ir/?q=پروتئین%20ات%20میت%20کرج', note: 'فروشگاه آنلاین پروتئینی با قیمت و امکان افزودن به سبد؛ وزن محصول از صفحه محصول کنترل می‌شود.', parse: parseProteinAtMeatChickenPrices, items: ['chicken'] },
   { id: 'parhana-red-meat', name: 'فروشگاه پرحنایی — گوشت قرمز', type: SOURCE_TYPES.TRUSTED, url: PARHANA_SHOP_URL, status: 'candidate', scope: 'mashhad-retail', city: 'مشهد', address: PARHANA_ADDRESS, neshanUrl: PARHANA_NESHAN_SEARCH, note: 'فعلاً نامزد؛ فعال‌سازی عمومی پس از تکمیل کنترل منبع.', parse: parseParhanaRedMeatPrices, items: ['red-meat'] },
