@@ -30,6 +30,9 @@ jobs:
       - name: Fetch and validate prices
         run: node scripts/update-prices.mjs
 
+      - name: Resilience test - source outage keeps last valid dataset
+        run: node scripts/test-resilience.mjs
+
       - name: Commit updated price data
         run: |
           git config user.name "github-actions[bot]"
