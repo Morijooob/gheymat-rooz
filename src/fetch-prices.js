@@ -2,42 +2,58 @@ import { sources } from './sources.js';
 import { validateItems } from './normalize.js';
 
 const faDigits = value => String(value ?? '').replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+const normalizePersian = value => String(value ?? '')
+  .replace(/[يى]/g, 'ی')
+  .replace(/ك/g, 'ک')
+  .replace(/[\u200c\u200d]/g, '')
+  .replace(/&nbsp;|&#160;/gi, ' ')
+  .replace(/&zwnj;|&#8204;/gi, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+
 const jalaliParts = (date = new Date()) => {
   const parts = new Intl.DateTimeFormat('fa-IR-u-ca-persian-nu-latn', { year: 'numeric', month: 'long', day: 'numeric' }).formatToParts(date);
   return Object.fromEntries(parts.filter(p => ['year', 'month', 'day'].includes(p.type)).map(p => [p.type, p.value]));
 };
+
 const canonicalChickenUrls = () => {
   const urls = [];
   for (let i = 0; i < 5; i += 1) {
     const { year, month, day } = jalaliParts(new Date(Date.now() - i * 86400000));
-    urls.push(`https://nabzgheymat.ir/قیمت-گوشت-مرغ-${day}-${month}-${year}/`);
     urls.push(`https://nabzgheymat.ir/قیمت-گوشت-مرغ-امروز-${day}-${month}-${year}/`);
+    urls.push(`https://nabzgheymat.ir/قیمت-مرغ-امروز-${day}-${month}-${year}/`);
     urls.push(`https://nabzgheymat.ir/قیمت-مرغ-امروز-${day}-${month}-${year}-جدول-کامل/`);
+    urls.push(`https://nabzgheymat.ir/قیمت-گوشت-مرغ-${day}-${month}-${year}/`);
   }
   return [...new Set(urls)];
 };
 
 function normalizeSourceText(raw) {
-  return String(raw ?? '')
+  return normalizePersian(String(raw ?? '')
     .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;|&#160;/gi, ' ')
-    .replace(/&zwnj;|&#8204;/gi, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+    .replace(/<[^>]+>/g, ' '));
+}
+
+function parseNumber(value) {
+  const cleaned = faDigits(value).replace(/[٬,\s]/g, '');
+  const number = Number(cleaned);
+  return Number.isFinite(number) ? number : null;
 }
 
 function parseCanonicalChicken(raw, response) {
   const text = normalizeSourceText(raw);
-  const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز\s*کیلو(?:یی)?/i;
+  const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز(?:\s*(?:کیلویی|کیلوگرم|کیلو))?/i;
   const index = text.search(target);
   if (index < 0) return [];
 
-  const window = text.slice(index, index + 500);
-  const match = window.match(/(?:^|[\s:|–-])([۰-۹0-9][۰-۹0-9٬,\. ]{2,})\s*(?:تومان|تومن)/i);
-  if (!match) return [];
+  const window = text.slice(index, index + 900);
+  const matches = [...window.matchAll(/([۰-۹0-9][۰-۹0-9٬,\s]{2,})(?:\s*)(هزار\s*)?(?:تومان|تومن)/gi)];
+  if (!matches.length) return [];
 
-  const price = Number(faDigits(match[1]).replace(/[٬,\.\s]/g, ''));
+  const match = matches[0];
+  const base = parseNumber(match[1]);
+  if (base === null || base <= 0) return [];
+  const price = /هزار/i.test(match[2] || '') ? base * 1000 : base;
   if (!Number.isFinite(price) || price <= 0) return [];
 
   return [{
