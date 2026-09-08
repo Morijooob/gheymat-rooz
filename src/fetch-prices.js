@@ -40,21 +40,50 @@ function parseNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function extractChickenPrice(text) {
+  const matches = [...normalizePersian(text).matchAll(/([۰-۹0-9][۰-۹0-9٬,\s]{2,})(?:\s*)(هزار\s*)?(?:تومان|تومن)/gi)];
+  for (const match of matches) {
+    const base = parseNumber(match[1]);
+    if (base === null || base <= 0) continue;
+    const price = /هزار/i.test(match[2] || '') ? base * 1000 : base;
+    if (Number.isFinite(price) && price > 0) return price;
+  }
+  return null;
+}
+
 function parseCanonicalChicken(raw, response) {
-  const text = normalizeSourceText(raw);
+  const html = String(raw ?? '');
   const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز(?:\s*(?:کیلویی|کیلوگرم|کیلو))?/i;
+
+  // Prefer the actual HTML table row. This preserves the relationship between
+  // the product name and its price instead of searching the whole page text.
+  const rows = [...html.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)];
+  for (const row of rows) {
+    const rowText = normalizeSourceText(row[0]);
+    if (!target.test(rowText)) continue;
+    const price = extractChickenPrice(rowText);
+    if (price === null) continue;
+    return [{
+      id: 'chicken-whole-fresh-slaughter-daily',
+      title: 'مرغ کامل تازه و کشتار روز',
+      price,
+      unit: 'تومان / کیلوگرم',
+      normalizedPrice: price,
+      normalizedUnit: 'تومان / کیلوگرم',
+      sourceId: 'nabzgheymat-chicken-canonical',
+      sourceUrl: response?.url || 'https://nabzgheymat.ir/',
+      availability: 'in_stock',
+      confidence: 'source-verified',
+      observedAt: new Date().toISOString(),
+    }];
+  }
+
+  // Fallback for pages that render the table without <tr> tags.
+  const text = normalizeSourceText(html);
   const index = text.search(target);
   if (index < 0) return [];
-
-  const window = text.slice(index, index + 900);
-  const matches = [...window.matchAll(/([۰-۹0-9][۰-۹0-9٬,\s]{2,})(?:\s*)(هزار\s*)?(?:تومان|تومن)/gi)];
-  if (!matches.length) return [];
-
-  const match = matches[0];
-  const base = parseNumber(match[1]);
-  if (base === null || base <= 0) return [];
-  const price = /هزار/i.test(match[2] || '') ? base * 1000 : base;
-  if (!Number.isFinite(price) || price <= 0) return [];
+  const price = extractChickenPrice(text.slice(index, index + 1200));
+  if (price === null) return [];
 
   return [{
     id: 'chicken-whole-fresh-slaughter-daily',
