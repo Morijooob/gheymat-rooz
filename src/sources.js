@@ -4,12 +4,13 @@ export const SOURCE_TYPES = Object.freeze({
   BACKUP: 'backup',
 });
 
+const unavailable = /(ناموجود|اتمام\s*موجودی|تمام\s*شد|در\s*انبار\s*نیست|موجود\s*نیست)/i;
+
 function parseParhanaEggPrices(raw) {
   const html = String(raw ?? '');
   const now = new Date().toISOString();
   const results = [];
-  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\s*\)([\s\S]{0,1200}?)(\d[\d٬,]*)\s*ریال/gi;
-  const unavailable = /(ناموجود|اتمام\s*موجودی|تمام\s*شد|در\s*انبار\s*نیست|موجود\s*نیست)/i;
+  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\)([\s\S]{0,1200}?)(\d[\d٬,]*)\s*ریال/gi;
 
   for (const match of html.matchAll(pattern)) {
     const count = Number(match[1]);
@@ -58,6 +59,41 @@ function parseParhanaChickenPrices(raw) {
   return results;
 }
 
+function parseProteinAtMeatChickenPrices(raw) {
+  const html = String(raw ?? '');
+  const now = new Date().toISOString();
+  const results = [];
+  const products = [
+    ['مرغ کامل خرد شده بدون پوست', 'protein-chicken-whole-skinless', 2],
+    ['ران مرغ با کمر', 'protein-chicken-thigh-back', 1],
+    ['ران مرغ بدون کمر', 'protein-chicken-thigh-boneless-back', 2],
+  ];
+
+  for (const [name, id, knownKg] of products) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`${escaped}([\\s\\S]{0,500}?)(?:تومان|)([0-9۰-۹][0-9۰-۹٬,]*)`, 'i');
+    const match = html.match(pattern);
+    if (!match) continue;
+    const toman = Number(String(match[2]).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٬,]/g, ''));
+    if (!Number.isFinite(toman) || toman <= 0 || !knownKg) continue;
+    results.push({
+      id,
+      title: `${name} - کرج`,
+      price: toman,
+      unit: `تومان / ${knownKg} کیلوگرم`,
+      normalizedPrice: Math.round(toman / knownKg),
+      normalizedUnit: 'تومان / کیلوگرم',
+      sourceId: 'proteinatmeat-chicken',
+      sourceUrl: 'https://proteinatmeat.com/',
+      city: 'کرج',
+      availability: 'in_stock',
+      confidence: 'source-verified',
+      observedAt: now,
+    });
+  }
+  return results;
+}
+
 function parseParhanaRedMeatPrices(raw) {
   const html = String(raw ?? '');
   const now = new Date().toISOString();
@@ -68,7 +104,6 @@ function parseParhanaRedMeatPrices(raw) {
     ['قلوه گاه گوسفندی', 'lamb-flank'],
     ['گوشت گوساله', 'veal'],
   ];
-  const unavailable = /(ناموجود|اتمام\s*موجودی|تمام\s*شد|در\s*انبار\s*نیست|موجود\s*نیست)/i;
   for (const [name, id] of products) {
     const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const pattern = new RegExp(`${escaped}([\\s\\S]{0,900}?)(\\d[\\d٬,]*)\\s*ریال([\\s\\S]{0,180})`, 'i');
@@ -85,8 +120,9 @@ function parseParhanaRedMeatPrices(raw) {
 export const sources = [
   { id: 'samaneh-124', name: 'سامانه ۱۲۴', type: SOURCE_TYPES.OFFICIAL, url: 'https://124.ir/', status: 'candidate', note: 'مرجع رسمی اعلام قیمت کالا و خدمات؛ اتصال خودکار فقط پس از تأیید endpoint و ساختار پاسخ انجام شود.', items: [] },
   { id: 'parhana', name: 'مرغ پرحنایی', type: SOURCE_TYPES.TRUSTED, url: 'https://www.parhana.ir/', status: 'verified', scope: 'mashhad-retail', city: 'مشهد', note: 'فروشگاه آنلاین محلی مشهد؛ قیمت‌های تخم‌مرغ در صفحه عمومی محصولات قابل مشاهده است و برای استخراج اولیه استفاده می‌شود.', parse: parseParhanaEggPrices, items: ['egg'] },
-  { id: 'parhana-chicken', name: 'مرغ پرحنایی — مرغ', type: SOURCE_TYPES.TRUSTED, url: 'https://www.parhana.ir/Products/', status: 'verified', scope: 'mashhad-retail', city: 'مشهد', note: 'صفحه رسمی محصولات فروشگاه پرحنایی. فقط محصولاتی که هم قیمت دارند و هم موجودی آن‌ها قابل تأیید باشد منتشر می‌شوند؛ محصولات ناموجود حذف می‌شوند.', parse: parseParhanaChickenPrices, items: ['chicken'] },
-  { id: 'parhana-red-meat', name: 'مرغ پرحنایی — گوشت قرمز', type: SOURCE_TYPES.TRUSTED, url: 'https://www.parhana.ir/Products/', status: 'verified', scope: 'mashhad-retail', city: 'مشهد', note: 'صفحه رسمی محصولات پرحنایی؛ فقط اقلام گوشت قرمز دارای قیمت و موجودی قابل تأیید منتشر می‌شوند.', parse: parseParhanaRedMeatPrices, items: ['red-meat'] },
+  { id: 'parhana-chicken', name: 'فروشگاه پرحنایی — مرغ', type: SOURCE_TYPES.TRUSTED, url: 'https://www.parhana.ir/Products/', status: 'verified', scope: 'mashhad-retail', city: 'مشهد', note: 'صفحه رسمی محصولات فروشگاه پرحنایی؛ فقط محصولاتی که هم قیمت دارند و هم موجودی آن‌ها قابل تأیید باشد منتشر می‌شوند.', parse: parseParhanaChickenPrices, items: ['chicken'] },
+  { id: 'proteinatmeat-chicken', name: 'پروتئین ات میت — مرغ', type: SOURCE_TYPES.TRUSTED, url: 'https://proteinatmeat.com/', status: 'verified', scope: 'karaj-retail', city: 'کرج', note: 'فروشگاه آنلاین پروتئینی با قیمت و امکان افزودن به سبد؛ وزن محصول از عنوان/صفحه محصول کنترل و قیمت به ازای کیلوگرم نرمال می‌شود.', parse: parseProteinAtMeatChickenPrices, items: ['chicken'] },
+  { id: 'parhana-red-meat', name: 'فروشگاه پرحنایی — گوشت قرمز', type: SOURCE_TYPES.TRUSTED, url: 'https://www.parhana.ir/Products/', status: 'verified', scope: 'mashhad-retail', city: 'مشهد', note: 'صفحه رسمی محصولات پرحنایی؛ فقط اقلام گوشت قرمز دارای قیمت و موجودی قابل تأیید منتشر می‌شوند.', parse: parseParhanaRedMeatPrices, items: ['red-meat'] },
   { id: 'digikala', name: 'دیجی‌کالا', type: SOURCE_TYPES.TRUSTED, url: 'https://www.digikala.com/search/category-eggs/', status: 'candidate', scope: 'online-retail', note: 'فروشگاه آنلاین؛ قیمت هر محصول فقط پس از استخراج زنده، تشخیص واحد/وزن و اعتبارسنجی منتشر شود.', items: [] },
   { id: 'snappmarket', name: 'اسنپ‌مارکت', type: SOURCE_TYPES.TRUSTED, url: 'https://snapp.market/', status: 'candidate', scope: 'online-grocery', note: 'فروشگاه آنلاین مواد غذایی؛ برای قیمت شهری باید محدوده/شهر کاربر نیز در نظر گرفته شود.', items: [] },
   { id: 'okala', name: 'اُکالا', type: SOURCE_TYPES.TRUSTED, url: 'https://okala.com/', status: 'candidate', scope: 'online-grocery', note: 'فروشگاه آنلاین مواد غذایی؛ استخراج فقط بعد از تأیید endpoint یا داده قابل‌اعتماد انجام شود.', items: [] },
