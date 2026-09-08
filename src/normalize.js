@@ -24,14 +24,29 @@ export function normalizeItem(item) {
   if (!item || typeof item !== 'object') return null;
 
   const price = normalizePrice(item.price);
-  if (price === null) return null;
+  if (price === null || price <= 0) return null;
+
+  const id = String(item.id ?? '').trim();
+  const title = String(item.title ?? '').trim();
+  const sourceId = String(item.sourceId ?? '').trim();
+  if (!id || !title || !sourceId) return null;
+
+  const normalizedPrice = item.normalizedPrice == null ? null : normalizePrice(item.normalizedPrice);
+  const availability = String(item.availability ?? 'unknown').trim();
+  if (availability === 'out_of_stock' || availability === 'unknown') return null;
 
   return {
-    id: String(item.id ?? '').trim(),
-    title: String(item.title ?? '').trim(),
+    id,
+    title,
     price,
     unit: String(item.unit ?? 'تومان').trim(),
-    sourceId: String(item.sourceId ?? '').trim(),
+    normalizedPrice,
+    normalizedUnit: String(item.normalizedUnit ?? '').trim(),
+    sourceId,
+    sourceUrl: String(item.sourceUrl ?? '').trim(),
+    city: String(item.city ?? '').trim(),
+    availability,
+    confidence: String(item.confidence ?? 'unverified').trim(),
     observedAt: item.observedAt ?? new Date().toISOString(),
   };
 }
