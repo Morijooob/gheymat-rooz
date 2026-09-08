@@ -1,6 +1,20 @@
 {
   "items": [
     {
+      "id": "chicken-whole-fresh-slaughter-daily",
+      "title": "مرغ کامل تازه و کشتار روز",
+      "price": 400000,
+      "unit": "تومان / کیلوگرم",
+      "normalizedPrice": 400000,
+      "normalizedUnit": "تومان / کیلوگرم",
+      "sourceId": "nabzgheymat-chicken-canonical",
+      "sourceUrl": "https://nabzgheymat.ir/%D9%82%DB%8C%D9%85%D8%AA-%DA%AF%D9%88%D8%B4%D8%AA-%D9%85%D8%B1%D8%BA-8-%D8%B4%D9%87%D8%B1%DB%8C%D9%88%D8%B1-1405/",
+      "city": "",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-08T12:19:00.215Z"
+    },
+    {
       "id": "parhana-egg-30",
       "title": "تخم مرغ پرحنایی 30 عددی - مشهد",
       "price": 580000,
@@ -12,7 +26,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     },
     {
       "id": "parhana-egg-20",
@@ -26,7 +40,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     },
     {
       "id": "parhana-egg-15",
@@ -40,7 +54,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     },
     {
       "id": "parhana-egg-9",
@@ -54,7 +68,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     },
     {
       "id": "parhana-egg-6",
@@ -68,7 +82,7 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     },
     {
       "id": "parhana-egg-24",
@@ -82,11 +96,11 @@
       "city": "مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-08T12:11:59.750Z"
+      "observedAt": "2026-09-08T12:19:02.859Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-08T12:12:03.315Z",
+  "updatedAt": "2026-09-08T12:19:05.957Z",
   "status": "ok",
   "note": null
 }
