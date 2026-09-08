@@ -39,6 +39,52 @@ function parseParhanaEggPrices(raw) {
   return results;
 }
 
+function parseParhanaChickenPrices(raw) {
+  const html = String(raw ?? '');
+  const now = new Date().toISOString();
+  const results = [];
+  const products = [
+    ['مرغ گرید A', 'chicken-grade-a'],
+    ['مرغ متوسط', 'chicken-medium'],
+    ['مرغ بزرگ', 'chicken-large'],
+    ['مرغ کوچک ( اکبر جوجه)', 'chicken-small'],
+    ['مرغ سایز (مجلسی)', 'chicken-size-majlesi'],
+    ['مرغ 8 تکه بدون پوست', 'chicken-8-piece-skinless'],
+  ];
+
+  for (const [name, id] of products) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`${escaped}([\\s\\S]{0,900}?)(\\d[\\d٬,]*)\\s*ریال([\\s\\S]{0,180}?)(ناموجود|مشاهده محصول)`, 'i');
+    const match = html.match(pattern);
+    if (!match) continue;
+
+    const afterPrice = match[3] ?? '';
+    const status = match[4] ?? '';
+    if (/ناموجود/i.test(afterPrice) || /ناموجود/i.test(status)) continue;
+
+    const rial = Number(String(match[2]).replace(/[٬,]/g, ''));
+    const toman = rial / 10;
+    if (!Number.isFinite(toman) || toman <= 0) continue;
+
+    results.push({
+      id: `parhana-${id}`,
+      title: `${name} - مشهد`,
+      price: toman,
+      unit: 'تومان / عدد',
+      normalizedPrice: toman,
+      normalizedUnit: 'تومان / عدد',
+      sourceId: 'parhana-chicken',
+      sourceUrl: 'https://www.parhana.ir/Products/',
+      city: 'مشهد',
+      availability: 'in_stock',
+      confidence: 'source-verified',
+      observedAt: now,
+    });
+  }
+
+  return results;
+}
+
 export const sources = [
   {
     id: 'samaneh-124',
@@ -60,6 +106,18 @@ export const sources = [
     note: 'فروشگاه آنلاین محلی مشهد؛ قیمت‌های تخم‌مرغ در صفحه عمومی محصولات قابل مشاهده است و برای استخراج اولیه استفاده می‌شود.',
     parse: parseParhanaEggPrices,
     items: ['egg'],
+  },
+  {
+    id: 'parhana-chicken',
+    name: 'مرغ پرحنایی — مرغ',
+    type: SOURCE_TYPES.TRUSTED,
+    url: 'https://www.parhana.ir/Products/',
+    status: 'verified',
+    scope: 'mashhad-retail',
+    city: 'مشهد',
+    note: 'صفحه رسمی محصولات فروشگاه پرحنایی. فقط محصولاتی که هم قیمت دارند و هم موجودی آن‌ها قابل تأیید باشد منتشر می‌شوند؛ محصولات ناموجود حذف می‌شوند.',
+    parse: parseParhanaChickenPrices,
+    items: ['chicken'],
   },
   {
     id: 'digikala',
