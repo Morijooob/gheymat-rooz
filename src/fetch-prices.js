@@ -18,7 +18,7 @@ const jalaliParts = (date = new Date()) => {
 
 const canonicalChickenUrls = () => {
   const urls = [];
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < 7; i += 1) {
     const { year, month, day } = jalaliParts(new Date(Date.now() - i * 86400000));
     urls.push(`https://nabzgheymat.ir/قیمت-گوشت-مرغ-امروز-${day}-${month}-${year}/`);
     urls.push(`https://nabzgheymat.ir/قیمت-مرغ-امروز-${day}-${month}-${year}/`);
@@ -51,41 +51,8 @@ function extractChickenPrice(text) {
   return null;
 }
 
-function parseCanonicalChicken(raw, response) {
-  const html = String(raw ?? '');
-  const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز(?:\s*(?:کیلویی|کیلوگرم|کیلو))?/i;
-
-  // Prefer the actual HTML table row. This preserves the relationship between
-  // the product name and its price instead of searching the whole page text.
-  const rows = [...html.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)];
-  for (const row of rows) {
-    const rowText = normalizeSourceText(row[0]);
-    if (!target.test(rowText)) continue;
-    const price = extractChickenPrice(rowText);
-    if (price === null) continue;
-    return [{
-      id: 'chicken-whole-fresh-slaughter-daily',
-      title: 'مرغ کامل تازه و کشتار روز',
-      price,
-      unit: 'تومان / کیلوگرم',
-      normalizedPrice: price,
-      normalizedUnit: 'تومان / کیلوگرم',
-      sourceId: 'nabzgheymat-chicken-canonical',
-      sourceUrl: response?.url || 'https://nabzgheymat.ir/',
-      availability: 'in_stock',
-      confidence: 'source-verified',
-      observedAt: new Date().toISOString(),
-    }];
-  }
-
-  // Fallback for pages that render the table without <tr> tags.
-  const text = normalizeSourceText(html);
-  const index = text.search(target);
-  if (index < 0) return [];
-  const price = extractChickenPrice(text.slice(index, index + 1200));
-  if (price === null) return [];
-
-  return [{
+function makeCanonicalChicken(price, response) {
+  return {
     id: 'chicken-whole-fresh-slaughter-daily',
     title: 'مرغ کامل تازه و کشتار روز',
     price,
@@ -97,7 +64,26 @@ function parseCanonicalChicken(raw, response) {
     availability: 'in_stock',
     confidence: 'source-verified',
     observedAt: new Date().toISOString(),
-  }];
+  };
+}
+
+function parseCanonicalChicken(raw, response) {
+  const html = String(raw ?? '');
+  const target = /مرغ\s*کامل\s*تازه\s*و\s*کشتار\s*روز(?:\s*(?:کیلویی|کیلوگرم|کیلو))?/i;
+
+  const rows = [...html.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)];
+  for (const row of rows) {
+    const rowText = normalizeSourceText(row[0]);
+    if (!target.test(rowText)) continue;
+    const price = extractChickenPrice(rowText);
+    if (price !== null) return [makeCanonicalChicken(price, response)];
+  }
+
+  const text = normalizeSourceText(html);
+  const index = text.search(target);
+  if (index < 0) return [];
+  const price = extractChickenPrice(text.slice(index, index + 1200));
+  return price === null ? [] : [makeCanonicalChicken(price, response)];
 }
 
 export async function fetchSource(source, fetchImpl = fetch) {
@@ -116,19 +102,35 @@ export async function fetchSource(source, fetchImpl = fetch) {
   throw lastError || new Error(`${source.id}: source unavailable`);
 }
 
+async function fetchCanonicalChicken(fetchImpl) {
+  const canonical = { id: 'nabzgheymat-chicken-canonical', urls: canonicalChickenUrls };
+  let lastError;
+  for (const url of canonical.urls()) {
+    try {
+      const response = await fetchImpl(url, { headers: { accept: 'application/json,text/html;q=0.9,*/*;q=0.8' } });
+      if (!response.ok) {
+        lastError = new Error(`${canonical.id}: HTTP ${response.status}`);
+        continue;
+      }
+      const raw = await response.text();
+      const parsed = parseCanonicalChicken(raw, response);
+      if (parsed.length) {
+        console.log(`Canonical chicken row found: ${response.url}`);
+        return parsed;
+      }
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  if (lastError) console.error('Canonical chicken pages checked, but exact target row was not found', lastError.message);
+  else console.error('Canonical chicken pages checked, but exact target row was not found');
+  return [];
+}
+
 export async function fetchAllPrices(fetchImpl = fetch) {
   const results = [];
   try {
-    const canonical = {
-      id: 'nabzgheymat-chicken-canonical',
-      url: 'https://nabzgheymat.ir/',
-      urls: canonicalChickenUrls,
-      parse: parseCanonicalChicken,
-    };
-    const response = await fetchSource(canonical, fetchImpl);
-    const raw = await response.text();
-    const parsed = parseCanonicalChicken(raw, response);
-    if (!parsed.length) console.error('Canonical chicken page found, but exact target row was not parsed');
+    const parsed = await fetchCanonicalChicken(fetchImpl);
     results.push(...validateItems(parsed));
   } catch (error) {
     console.error('Price source failed: nabzgheymat-chicken-canonical', error);
