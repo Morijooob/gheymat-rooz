@@ -8,20 +8,30 @@ function parseParhanaEggPrices(raw) {
   const html = String(raw ?? '');
   const now = new Date().toISOString();
   const results = [];
-  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\s*\)[\s\S]{0,1200}?(\d[\d٬,]*)\s*ریال/gi;
+  const pattern = /تخم\s*مرغ\s*پرحنایی\s*\(\s*بسته\s*(6|9|15|20|24|30)\s*عدد(?:ی)?\s*\)([\s\S]{0,1200}?)(\d[\d٬,]*)\s*ریال/gi;
+  const unavailable = /(ناموجود|اتمام\s*موجودی|تمام\s*شد|در\s*انبار\s*نیست|موجود\s*نیست)/i;
 
   for (const match of html.matchAll(pattern)) {
     const count = Number(match[1]);
-    const rial = Number(String(match[2]).replace(/[٬,]/g, ''));
+    const productBlock = match[2] ?? '';
+    if (unavailable.test(productBlock)) continue;
+
+    const rial = Number(String(match[3]).replace(/[٬,]/g, ''));
     const toman = rial / 10;
-    if (!Number.isFinite(toman) || toman <= 0) continue;
+    if (!Number.isFinite(toman) || toman <= 0 || !Number.isInteger(count) || count <= 0) continue;
 
     results.push({
       id: `parhana-egg-${count}`,
       title: `تخم مرغ پرحنایی ${count} عددی - مشهد`,
       price: toman,
       unit: 'تومان / بسته',
+      normalizedPrice: Math.round((toman / count) * 100) / 100,
+      normalizedUnit: 'تومان / عدد',
       sourceId: 'parhana',
+      sourceUrl: 'https://www.parhana.ir/',
+      city: 'مشهد',
+      availability: 'in_stock',
+      confidence: 'source-verified',
       observedAt: now,
     });
   }
