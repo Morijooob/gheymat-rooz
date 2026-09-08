@@ -1,18 +1,18 @@
 import fs from 'node:fs/promises';
-import { sources } from '../src/sources.js';
+import { fetchAllPrices } from '../src/fetch-prices.js';
 
 const output = {
   items: [],
+  stores: [],
   updatedAt: null,
   status: 'not-configured',
   note: 'No verified source adapter is active yet. No price is published until a live source is verified.',
 };
 
-for (const source of sources) {
-  if (source.status !== 'verified' || typeof source.fetchPrices !== 'function') continue;
-  const result = await source.fetchPrices();
-  if (!result || !Array.isArray(result.items)) continue;
-  output.items.push(...result.items);
+try {
+  output.items = await fetchAllPrices();
+} catch (error) {
+  console.error('Price update failed:', error);
 }
 
 if (output.items.length > 0) {
@@ -21,5 +21,10 @@ if (output.items.length > 0) {
   output.note = null;
 }
 
-await fs.writeFile('data/prices.json', JSON.stringify(output, null, 2) + '\n', 'utf8');
-console.log(JSON.stringify({ status: output.status, count: output.items.length, updatedAt: output.updatedAt }));
+const serialized = JSON.stringify(output, null, 2) + '\n';
+await fs.mkdir('data', { recursive: true });
+await fs.mkdir('public/data', { recursive: true });
+await fs.writeFile('data/prices.json', serialized, 'utf8');
+await fs.writeFile('public/data/prices.json', serialized, 'utf8');
+
+console.log(JSON.stringify({ status: output.status, count: output.items.length, stores: output.stores.length, updatedAt: output.updatedAt }));
