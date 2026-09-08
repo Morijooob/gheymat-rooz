@@ -6,7 +6,7 @@
       "price": 580000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     },
     {
       "id": "parhana-egg-20",
@@ -14,7 +14,7 @@
       "price": 440000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     },
     {
       "id": "parhana-egg-15",
@@ -22,7 +22,7 @@
       "price": 315000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     },
     {
       "id": "parhana-egg-9",
@@ -30,7 +30,7 @@
       "price": 195000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     },
     {
       "id": "parhana-egg-6",
@@ -38,7 +38,7 @@
       "price": 165000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     },
     {
       "id": "parhana-egg-24",
@@ -46,11 +46,11 @@
       "price": 475000,
       "unit": "تومان / بسته",
       "sourceId": "parhana",
-      "observedAt": "2026-09-08T09:59:31.522Z"
+      "observedAt": "2026-09-08T10:00:06.134Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-08T09:59:31.523Z",
+  "updatedAt": "2026-09-08T10:00:06.135Z",
   "status": "ok",
   "note": null
 }
