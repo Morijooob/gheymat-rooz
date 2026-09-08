@@ -45,6 +45,8 @@ export function normalizeItem(item) {
     sourceId,
     sourceUrl: String(item.sourceUrl ?? '').trim(),
     city: String(item.city ?? '').trim(),
+    address: String(item.address ?? '').trim(),
+    neshanUrl: String(item.neshanUrl ?? '').trim(),
     availability,
     confidence: String(item.confidence ?? 'unverified').trim(),
     observedAt: item.observedAt ?? new Date().toISOString(),
