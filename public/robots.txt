@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gheymat-rooz.m73216r.workers.dev/sitemap.xml
