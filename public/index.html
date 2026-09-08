@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <div class="backdrop" aria-hidden="true"></div>
   <main class="container">
     <header class="hero">
       <div>
-        <span class="eyebrow">قیمت روز</span>
+        <span class="eyebrow">🛒 قیمت روز</span>
         <h1>قیمت واقعی بازار، نزدیک شما</h1>
         <p>قیمت مرجع، فروشگاه‌های معتبر و ارزان‌ترین گزینه را یکجا ببین.</p>
       </div>
@@ -29,11 +30,15 @@
     </header>
 
     <section class="search-wrap">
-      <input id="search" type="search" placeholder="مثلاً تخم‌مرغ، برنج، روغن..." autocomplete="off">
+      <div class="search-row">
+        <input id="search" type="search" placeholder="مثلاً تخم‌مرغ، برنج، روغن..." autocomplete="off">
+        <button id="showPrices" type="button">نمایش قیمت 🔎</button>
+      </div>
+      <div class="hint">شهر را انتخاب کن، کالا را بنویس و «نمایش قیمت» را بزن.</div>
     </section>
 
     <section class="stats">
-      <div><strong id="itemCount">—</strong><span>کالا</span></div>
+      <div><strong id="itemCount">—</strong><span>قیمت معتبر</span></div>
       <div><strong id="storeCount">—</strong><span>فروشگاه</span></div>
       <div><strong id="updated">—</strong><span>آخرین بروزرسانی</span></div>
     </section>
