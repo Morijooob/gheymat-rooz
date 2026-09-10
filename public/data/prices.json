@@ -14,11 +14,59 @@
       "neshanUrl": "",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-10T05:27:44.436Z"
+      "observedAt": "2026-09-10T09:55:03.428Z"
+    },
+    {
+      "id": "parhana-egg-15",
+      "title": "تخم مرغ پرحنایی 15 عددی - مشهد",
+      "price": 315000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 21000,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-10T09:55:05.706Z"
+    },
+    {
+      "id": "parhana-egg-20",
+      "title": "تخم مرغ پرحنایی 20 عددی - مشهد",
+      "price": 440000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 22000,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-10T09:55:05.706Z"
+    },
+    {
+      "id": "parhana-egg-30",
+      "title": "تخم مرغ پرحنایی 30 عددی - مشهد",
+      "price": 580000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 19333.33,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-09-10T09:55:05.706Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-10T05:27:49.885Z",
+  "updatedAt": "2026-09-10T09:55:08.607Z",
   "status": "ok",
   "note": null
 }
