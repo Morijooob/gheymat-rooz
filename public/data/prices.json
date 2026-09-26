@@ -14,7 +14,7 @@
       "neshanUrl": "",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:33.569Z"
+      "observedAt": "2026-09-26T17:29:15.580Z"
     },
     {
       "id": "parhana-egg-15",
@@ -30,7 +30,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     },
     {
       "id": "parhana-egg-20",
@@ -46,7 +46,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     },
     {
       "id": "parhana-egg-30",
@@ -62,7 +62,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     },
     {
       "id": "parhana-egg-24",
@@ -78,7 +78,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     },
     {
       "id": "parhana-egg-6",
@@ -94,7 +94,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     },
     {
       "id": "parhana-egg-9",
@@ -110,11 +110,11 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-09-26T13:36:35.830Z"
+      "observedAt": "2026-09-26T17:29:17.931Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-09-26T13:36:38.333Z",
+  "updatedAt": "2026-09-26T17:29:20.819Z",
   "status": "ok",
   "note": null
 }
