@@ -14,55 +14,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
-    },
-    {
-      "id": "parhana-egg-20",
-      "title": "تخم مرغ پرحنایی 20 عددی - مشهد",
-      "price": 440000,
-      "unit": "تومان / بسته",
-      "normalizedPrice": 22000,
-      "normalizedUnit": "تومان / عدد",
-      "sourceId": "parhana",
-      "sourceUrl": "https://www.parhana.ir/",
-      "city": "مشهد",
-      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
-      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
-      "availability": "in_stock",
-      "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
-    },
-    {
-      "id": "parhana-egg-30",
-      "title": "تخم مرغ پرحنایی 30 عددی - مشهد",
-      "price": 570000,
-      "unit": "تومان / بسته",
-      "normalizedPrice": 19000,
-      "normalizedUnit": "تومان / عدد",
-      "sourceId": "parhana",
-      "sourceUrl": "https://www.parhana.ir/",
-      "city": "مشهد",
-      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
-      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
-      "availability": "in_stock",
-      "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
-    },
-    {
-      "id": "parhana-egg-9",
-      "title": "تخم مرغ پرحنایی 9 عددی - مشهد",
-      "price": 210000,
-      "unit": "تومان / بسته",
-      "normalizedPrice": 23333.33,
-      "normalizedUnit": "تومان / عدد",
-      "sourceId": "parhana",
-      "sourceUrl": "https://www.parhana.ir/",
-      "city": "مشهد",
-      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
-      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
-      "availability": "in_stock",
-      "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
+      "observedAt": "2026-10-01T16:45:52.879Z"
     },
     {
       "id": "parhana-egg-15",
@@ -78,7 +30,55 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
+      "observedAt": "2026-10-01T16:45:52.879Z"
+    },
+    {
+      "id": "parhana-egg-20",
+      "title": "تخم مرغ پرحنایی 20 عددی - مشهد",
+      "price": 440000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 22000,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-10-01T16:45:52.879Z"
+    },
+    {
+      "id": "parhana-egg-30",
+      "title": "تخم مرغ پرحنایی 30 عددی - مشهد",
+      "price": 570000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 19000,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-10-01T16:45:52.879Z"
+    },
+    {
+      "id": "parhana-egg-9",
+      "title": "تخم مرغ پرحنایی 9 عددی - مشهد",
+      "price": 210000,
+      "unit": "تومان / بسته",
+      "normalizedPrice": 23333.33,
+      "normalizedUnit": "تومان / عدد",
+      "sourceId": "parhana",
+      "sourceUrl": "https://www.parhana.ir/",
+      "city": "مشهد",
+      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
+      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
+      "availability": "in_stock",
+      "confidence": "source-verified",
+      "observedAt": "2026-10-01T16:45:52.879Z"
     },
     {
       "id": "parhana-egg-6",
@@ -94,11 +94,11 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-01T09:19:52.476Z"
+      "observedAt": "2026-10-01T16:45:52.879Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-10-01T09:19:56.872Z",
+  "updatedAt": "2026-10-01T16:45:56.093Z",
   "status": "ok",
   "note": null
 }
