@@ -1,22 +1,6 @@
 {
   "items": [
     {
-      "id": "parhana-egg-24",
-      "title": "تخم مرغ پرحنایی 24 عددی - مشهد",
-      "price": 480000,
-      "unit": "تومان / بسته",
-      "normalizedPrice": 20000,
-      "normalizedUnit": "تومان / عدد",
-      "sourceId": "parhana",
-      "sourceUrl": "https://www.parhana.ir/",
-      "city": "مشهد",
-      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
-      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
-      "availability": "in_stock",
-      "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
-    },
-    {
       "id": "parhana-egg-15",
       "title": "تخم مرغ پرحنایی 15 عددی - مشهد",
       "price": 310000,
@@ -30,7 +14,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
+      "observedAt": "2026-10-03T07:27:35.867Z"
     },
     {
       "id": "parhana-egg-20",
@@ -46,7 +30,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
+      "observedAt": "2026-10-03T07:27:35.867Z"
     },
     {
       "id": "parhana-egg-30",
@@ -62,14 +46,14 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
+      "observedAt": "2026-10-03T07:27:35.867Z"
     },
     {
-      "id": "parhana-egg-9",
-      "title": "تخم مرغ پرحنایی 9 عددی - مشهد",
-      "price": 210000,
+      "id": "parhana-egg-24",
+      "title": "تخم مرغ پرحنایی 24 عددی - مشهد",
+      "price": 480000,
       "unit": "تومان / بسته",
-      "normalizedPrice": 23333.33,
+      "normalizedPrice": 20000,
       "normalizedUnit": "تومان / عدد",
       "sourceId": "parhana",
       "sourceUrl": "https://www.parhana.ir/",
@@ -78,27 +62,11 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
-    },
-    {
-      "id": "parhana-egg-6",
-      "title": "تخم مرغ پرحنایی 6 عددی - مشهد",
-      "price": 150000,
-      "unit": "تومان / بسته",
-      "normalizedPrice": 25000,
-      "normalizedUnit": "تومان / عدد",
-      "sourceId": "parhana",
-      "sourceUrl": "https://www.parhana.ir/",
-      "city": "مشهد",
-      "address": "مشهد، شعب فروشگاه‌های زنجیره‌ای پرحنایی",
-      "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
-      "availability": "in_stock",
-      "confidence": "source-verified",
-      "observedAt": "2026-10-03T01:43:15.888Z"
+      "observedAt": "2026-10-03T07:27:35.867Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-10-03T01:43:19.075Z",
+  "updatedAt": "2026-10-03T07:27:40.220Z",
   "status": "ok",
   "note": null
 }
