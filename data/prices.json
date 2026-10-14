@@ -19,6 +19,6 @@
   ],
   "stores": [],
   "updatedAt": "2026-10-14T05:48:51.187Z",
-  "status": "ok",
-  "note": null
+  "status": "stale",
+  "note": "Live source returned no valid prices; last valid dataset was preserved."
 }
