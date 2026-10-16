@@ -14,7 +14,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-16T14:44:19.386Z"
+      "observedAt": "2026-10-16T18:31:36.837Z"
     },
     {
       "id": "parhana-egg-20",
@@ -30,7 +30,7 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-16T14:44:19.386Z"
+      "observedAt": "2026-10-16T18:31:36.837Z"
     },
     {
       "id": "parhana-egg-30",
@@ -46,11 +46,11 @@
       "neshanUrl": "https://nshn.ir/?q=فروشگاه%20پرحنایی%20مشهد",
       "availability": "in_stock",
       "confidence": "source-verified",
-      "observedAt": "2026-10-16T14:44:19.386Z"
+      "observedAt": "2026-10-16T18:31:36.837Z"
     }
   ],
   "stores": [],
-  "updatedAt": "2026-10-16T14:44:22.701Z",
+  "updatedAt": "2026-10-16T18:31:39.710Z",
   "status": "ok",
   "note": null
 }
